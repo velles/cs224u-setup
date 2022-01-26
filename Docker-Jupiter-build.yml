@@ -1,0 +1,13 @@
+version: '1.0'
+services:
+  cs224u-notebook:
+    container_name: cs224u-notebook
+    build:
+      context: ./
+      dockerfile: ./Docker-Jupiter
+      args:
+        - author=Vel Les
+        - username=devel
+        - userid=1000
+        - conda_environment=nlu
+    image: cs224u-notebook:latest

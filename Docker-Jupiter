@@ -1,0 +1,51 @@
+ARG BASE_CONTAINER=continuumio/anaconda3:latest
+FROM $BASE_CONTAINER
+
+ARG author
+LABEL author=${author}
+
+RUN apt-get update && apt-get install -y \
+        build-essential \
+        cmake \
+        ffmpeg \
+        git \
+        libboost-all-dev \
+        libjpeg-dev \
+        libpq-dev \
+        libsdl2-dev swig \
+        sudo \
+        unzip \
+        xorg-dev \
+        xvfb \
+        zip \
+        zlib1g-dev \
+    && apt clean \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY environment.yml /tmp/
+RUN echo '    - pyvirtualdisplay' >> /tmp/environment.yml \
+    && conda env create -f /tmp/environment.yml \
+    && conda clean -afy \
+    && find /opt/conda/ -follow -type f -name '*.a' -delete \
+    && find /opt/conda/ -follow -type f -name '*.pyc' -delete \
+    && find /opt/conda/ -follow -type f -name '*.js.map' -delete \
+    && rm /tmp/environment.yml
+
+ARG username
+ARG userid
+ARG conda_environment
+
+ARG home=/home/${username}
+ARG workdir=${home}/work
+
+RUN adduser ${username} --uid ${userid} --gecos '' --disabled-password \
+    && echo "${username} ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/${username} \
+    && chmod 0440 /etc/sudoers.d/${username}
+
+WORKDIR ${workdir}
+RUN chown ${username}:${username} ${workdir}
+
+USER ${username}
+WORKDIR ${workdir}
+
+ENV PATH /opt/conda/envs/${conda_environment}/bin:$PATH

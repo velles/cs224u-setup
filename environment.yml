@@ -1,0 +1,14 @@
+name: nlu
+channels:
+  - conda-forge
+  - pytorch
+  - defaults
+dependencies:
+  - pip
+  - python=3.8
+  - pytorch=1.8.0
+  - torchvision=0.9.0
+  - transformers
+  - jupyter
+  - pip:
+    - transformers==4.3.3

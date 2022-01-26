@@ -1,0 +1,16 @@
+version: '3.3'
+services:
+  cs224u-notebook:
+    container_name: cs224u-notebook
+    ports:
+      - '8882:8888'
+    volumes:
+      - './work:/home/devel/work'
+    image: cs224u-notebook:latest
+    restart: unless-stopped
+    command: /opt/conda/envs/nlu/bin/jupyter notebook --ip='0.0.0.0' --port=8888 --no-browser
+    logging:
+      driver: json-file
+      options:
+        max-size: 50m
+    
