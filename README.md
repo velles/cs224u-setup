@@ -2,7 +2,7 @@
 Docker set up for Stanford Class CS224u. Based on the original non Docker setup [here](https://nbviewer.org/github/cgpotts/cs224u/blob/master/setup.ipynb#Jupyter-notebooks)
 
 # Customization
-1. Inside `Docker-Jupiter.yml` change `author` to your name
+1. Inside `Docker-Jupiter-build.yml` change `author` to your name
 
 # Set up
 1.  Docker 
