@@ -20,12 +20,18 @@ In this setup I am using `jupyter lab` not `jupiter notebook`.
 # Access Jupiter Lab
 1. Make sure the container is running 
 
-2. Go to http://127.0.0.1:8882
+2. Go to http://127.0.0.1:8882/lab
 
 3. Get Initial Token for Lab   
   3.1 Open Docker Dashboard   
   3.2 Go Under stanford-classes -> cs224u-notebook   
   3.3 In the Logs you can see `...?token=MY-TOKEN`
+
+# IMPORTANT
+**Gotcha for running Jupyter Lab:**
+
+Starting jupyter lab with `jupyter lab` with the `lab` argument inside `Docker-Jupiter-compose.yml` does not start the notebook with the correct environments.
+The workaround is just going to `http://127.0.0.1:8882/lab` which will open the lab env and be able to change all the different env/kernals
 
 # Other Notes: 
 - Notepads are saved under `/work` directory.

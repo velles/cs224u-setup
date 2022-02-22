@@ -8,7 +8,7 @@ services:
       - './work:/home/devel/work'
     image: cs224u-notebook:latest
     restart: unless-stopped
-    command: /opt/conda/envs/nlu/bin/jupyter lab --ip='0.0.0.0' --port=8888 --no-browser
+    command: /opt/conda/envs/nlu/bin/jupyter --ip='0.0.0.0' --port=8888 --no-browser
     logging:
       driver: json-file
       options:
